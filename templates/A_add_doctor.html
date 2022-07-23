@@ -1,0 +1,115 @@
+{% extends "sidebar.html"%}
+{% block main_2%}
+
+                     <!-- Page Content -->
+            <div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+                
+                <h3 class="page-header text-center">Add New Doctor</h3>
+
+                <!-- We'll fill this with dummy content -->
+
+        
+                <form action="/A/add_doctor" method="POST" class="container">
+                    <!-- <h2 style="text-align: center;">Add a Doctor</h2> -->
+            
+                    {% if succ %}
+                    <div class="alert alert-success" role="alert">
+                        {{ succ }}
+                    </div>
+                    {% endif %}
+            
+                    {% if err %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ err }}
+                    </div>
+                    {% endif %}
+            
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" class="form-control" id="name" required>
+                    </div>
+            
+                    <div class="form-group col-md-6" >
+                        <label  for="gender">Gender</label>
+                        <select id="gender" class="form-control" name="gender">
+                          <option selected value="0">Select</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          
+                        </select>
+                      </div>
+            
+                    <div class="form-group col-12">
+                        <label for="InputEmail1">Email</label>
+                        <input type="email" name="email" class="form-control" id="InputEmail1" required>
+                    </div>
+            
+                    <div class="form-group col-md-6">
+                        <label for="pw1">Enter a password</label>
+                        <div class="input-group">
+                            <input type="password" data-toggle="password" name="password" class="form-control" id="pw1" required>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="fa fa-eye"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        <label for="pw2">Confirm password</label>
+                        <div class="input-group">
+                            <input type="password" data-toggle="password" class="form-control" id="pw2" required>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="fa fa-eye"></i></div>
+                            </div>
+                        </div>
+                        <small style="color:#d80808cb;" id="pwcheck"></small>
+                    </div>
+                    
+                    
+                    <div class="form-group col-md-6">
+                        <label for="InputPhone">Phone Number</label>
+                        <input type="tel" name="phone" class="form-control" id="InputPhone">
+                    </div>
+            
+                    <div class="form-group col-md-6">
+                        <label for="ssn">Social Security Number</label>
+                        <input type="number" name="SSN" class="form-control" id="ssn">
+                    </div>
+            
+                            
+                    <!--------------------------- birthday -------------->
+                    <!-- use -->
+                    <!-- <div class="row"> -->
+                    <div class="form-group col-md-6">
+                        <label for="bd">Birthday</label>
+                        <input type="text" name="birthday" class="form-control" id="bd">
+                        <small class="form-text text-muted">Date format: YYYY-MM-DD</small>
+                        <small style="color:#d80808cb;" id="bdcheck"></small>
+                    </div>
+            
+                    <!-- </div> -->
+             
+            
+                        <!-- <small id="check"></small> -->
+                        
+                    <div class="col-12" style="text-align: center;">
+                        <button type="button" class="btn btn-secondary btn-lg" id="btn">Submit</button>
+                    </div>
+                </div>
+                </form>                
+                    
+               
+
+
+               <!-- End of dummy Content -->
+            </div>
+                    
+                    
+                    
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="../static/scripts/show-hide-password/bootstrap-show-password.js"></script>
+        <script src="../static/scripts/validations.js"></script>
+        {% endblock %}

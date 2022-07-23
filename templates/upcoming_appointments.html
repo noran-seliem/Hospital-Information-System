@@ -1,0 +1,239 @@
+{% extends "sidebar.html"%}
+
+{% block style_1 %}
+
+<!-- BOOTSTRAP CSS AND PLUGINS-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous">
+    </script>
+
+{% endblock %}
+
+
+
+{% block main_2%}
+<!-- Page Content -->
+<div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+    <!-- We'll fill this with dummy content -->
+
+    <div id="DIV1" class="container bootdey flex-grow-1 container-p-y">
+        <hr class="border-light m-0">
+
+        <h2 class="mt-4 mb-3">Upcoming Appointments</h2>
+        <table class="table user-view-table m-0">
+            <thead>
+
+                <th scope="col">#</th>
+                <th>Appointment ID:</th>
+                {% if session['msg']== 'd' or session['msg']== 'A' %}
+                <th>Patient Name:</th>
+                {% endif %}
+                {% if session['msg']== 'p' or session['msg']== 'A'  %}
+                <th>Doctor Name:</th>
+                {% endif %}
+                <th>Appointment Date:</th>
+                <th>Appointment Time:</th>
+                {% if session['msg']== 'd' or session['msg']== 'A' %}
+                <th class="text-center"> Details</th>
+                {% endif %}
+                {% if session['msg']== 'p' or session['msg']== 'A'  %}
+                <th>More:</th>
+                {% endif %}
+
+            </thead>
+
+            <tbody>
+                {% for d in data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{d['id']}}</td>
+                    {% if d['Name'] %}
+                    <td>{{d['Name']}}</td>
+                    {% endif %}
+                    {% if d['dname'] %}
+                    <td>{{d['dname']}}</td>
+                    {% endif %}
+                    <td>{{d['bookedTime'].date()}}</td>
+                    <td>{{d['bookedTime'].time()}}</td>
+                    {% if  session['msg']== 'd' or session['msg']== 'A' %}
+                    <td> <button type="button" class="btn btn-success" data-toggle="modal"
+                            data-target="#myModal1{{d['id']}}"
+                            id="b1">Patient</button>{% if session['msg']== 'A' %}<button type="button"
+                            class="btn btn-default" style="border-color: green;" data-toggle="modal" data-target="#myModal2{{d['id']}}"
+                            id="s2">Doctor</button>{% endif %}</td>
+                    {% endif %}
+                    {% if  session['msg']== 'p' or session['msg']== 'A' %}
+                    <td>
+                        <a href="/delApp/{{d['id']}}" class="btn btn-danger btn-xs">Delete</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+        {% for d in data %}
+        <!-- Modal1 -->
+        <div class="modal fade" id="myModal1{{d['id']}}" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container bootdey flex-grow-1 container-p-y">
+                            <hr class="border-light m-0">
+                            <table class="table user-view-table m-0">
+                                <tbody>
+                                    <!-- {% for p in data %}
+                                    {% if p['id'] == d['id'] %} -->
+                                    <tr>
+                                        <td> Name:</td>
+                                        <td>{{ d['Name'] }}</td>
+                                    </tr>
+                                    {% if session['msg'] == 'a' %}
+                                    <tr>
+                                        <td> ID:</td>
+                                        <td>{{d['patID']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> E-mail:</td>
+                                        <td>{{d['Email']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Phone:</td>
+                                        <td>{{d['Phone']}}</td>
+                                    </tr>
+                                    <tr>
+                                        {% endif %}
+                                        <td> Job:</td>
+                                        <td>{{d['Job']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Birth Date:</td>
+                                        <td>{{d['Birthday']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender:</td>
+                                        <td>{{d['Gender']}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 class="mt-4 mb-3">Medical History</h4>
+                            <table class="table user-view-table m-0">
+                                <tbody>
+                                    <tr>
+                                        <td>Blood Type:</td>
+                                        <td>{{d['BloodType']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight:</td>
+                                        <td>{{d['weight']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suffers From Hyper Tension:</td>
+                                        <td>{{d['Hypertension']}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hypertension Is Controlled:</td>
+                                        <td>{{d['ControlledHypertension']}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diabetic:</td>
+                                        <td>{{d['Diabetic']}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diabetes Is Controlled:</td>
+                                        <td>{{d['ControlledDiabetes']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Had Heart Stroke Before:</td>
+                                        <td>{{d['HeartStroke']}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suffers From Cholesterol:</td>
+                                        <td>{{d['Cholesterol']}} </td>
+                                    </tr>
+                                    <!-- {% endif%}
+                                    {% endfor %} -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal2 -->
+        <div class="modal fade" id="myModal2{{d['id']}}" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container bootdey flex-grow-1 container-p-y">
+                            <hr class="border-light m-0">
+                            <table class="table user-view-table m-0">
+                                <tbody>
+                                    <tr>
+                                        <td> ID:</td>
+                                        <td>{{ d['drID'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Name:</td>
+                                        <td>{{d['dname']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> E-mail:</td>
+                                        <td>{{d['demail']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Phone:</td>
+                                        <td>{{d['dphone']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Birth Date:</td>
+                                        <td>{{d['bday']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender:</td>
+                                        <td>{{d['sex']}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor%}
+
+
+
+{% endblock %}

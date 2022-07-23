@@ -1,0 +1,60 @@
+{% extends "sidebar.html"%}
+{% block main_2%}
+                     <!-- Page Content -->
+            <div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+                
+                <h3 class="page-header text-center">Patients' Records</h3>
+
+                <form action="{{url_for('admin.view_patients')}}" method="post">
+                    <!-- We'll fill this with dummy content -->
+                    {% if succ %}
+                    <div class="alert alert-success" role="alert">
+                        {{ succ }}
+                    </div>
+                    {% endif %}
+            
+                    {% if err %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ err }}
+                    </div>
+                    {% endif %}
+    
+                    <table class="table user-view-table m-3 text-center">
+                        <tbody>
+                        <tr>
+                            {% for head in headers %}
+                                <th class="p-2">{{head}}</th>
+                            {% endfor %}
+                        </tr>
+                
+                        {% for patient in AllPatients %}
+                
+                        <tr>
+                            {% for data in patient %}
+                            <td>{{data}}</td>
+                            {% endfor %}
+                            <td><button type="submit" class="btn btn-success" name="edit" value="{{patient.0}}">Edit</button></td>
+                            <td><button type="submit" class="btn btn-danger" name="del" value="{{patient.0}}" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>    
+                    </table>
+                        
+                </form>
+    
+            
+               
+
+
+               <!-- End of dummy Content -->
+            </div>
+                    
+                    
+                    
+        </div>
+                
+
+
+            
+
+{% endblock %}

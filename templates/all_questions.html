@@ -1,0 +1,109 @@
+{% extends "sidebar.html"%}
+
+{% block main_2%}
+
+<link rel="stylesheet" href="../static/styles/tabs.css">
+
+<!-- Page Content -->
+<div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+
+    <h3 class="page-header text-center">All Threads</h3>
+    <!-- We'll fill this with dummy content -->
+    <div class="container bootdey flex-grow-1 container-p-y">
+        <button class="tablink" onclick="openPage('Solved', this, '#e6fff2')">Solved</button>
+        <button class="tablink" onclick="openPage('Unsolved', this, '#ffe6e6')" id="defaultOpen">Unsolved</button>
+
+        <div class="container"> 
+        {% if session['msg']=='p' %}
+
+
+        <div id="Solved" class="tabcontent">
+            <!-- <h3>Solved</h3> -->
+            {% if solved %}
+                {% for msg in solved %}
+                <a href="{{ url_for('patient.solved', Qid = msg['id']) }}">
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Thread #{{msg['id']}}</h5>
+                            <p class="card-text">Subject: {{msg['subject']}}</p>
+                            <!-- <a href="" class="stretched-link"></a> -->
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+          
+        <div id="Unsolved" class="tabcontent">
+            <!-- <h3>Unsolved</h3> -->
+            {% if unsolved %}
+                {% for msg in unsolved %}
+                <a href="{{ url_for('patient.unsolved', Qid = msg['id']) }}">
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Thread #{{msg['id']}}</h5>
+                            <p class="card-text">Subject: {{msg['subject']}}</p>
+                            <!-- <a href="" class="stretched-link"></a> -->
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+          
+        <div class="text-center">
+            <button class="btn btn-lg btn-outline-info m-3 p-2"><a href="{{ url_for('patient.contactus')}}" style="color: inherit; text-decoration: inherit;">Ask a New Question</a></button>
+        </div>
+
+
+        {% elif session['msg']=='A' %}
+
+
+
+        <div id="Solved" class="tabcontent">
+            <!-- <h3>Solved</h3> -->
+            {% if solved %}
+                {% for msg in solved %}
+                <a href="{{ url_for('admin.solved',Qid = msg['id']) }}">
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Thread #{{msg['id']}}</h5>
+                            <p class="card-text">Subject: {{msg['subject']}}</p>
+                            <!-- <a href="" class="stretched-link"></a> -->
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+          
+        <div id="Unsolved" class="tabcontent">
+            <!-- <h3>Unsolved</h3> -->
+            {% if unsolved %}
+                {% for msg in unsolved %}
+                <a href="{{ url_for('admin.unsolved', Qid = msg['id']) }}">
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Thread #{{msg['id']}}</h5>
+                            <p class="card-text">Subject: {{msg['subject']}}</p>
+                            <!-- <a href="" class="stretched-link"></a> -->
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+          
+
+
+        {% endif %}
+
+      </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="../static/scripts/tabs.js"></script>
+
+{% endblock %}

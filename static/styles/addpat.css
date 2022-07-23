@@ -1,0 +1,8 @@
+div {
+    display: block;
+    transition: all .2s ease-out;
+}
+
+.hidden {
+    display: none;
+}

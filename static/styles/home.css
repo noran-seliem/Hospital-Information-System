@@ -1,0 +1,230 @@
+
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body
+{
+  font-family: sans-serif;
+
+}
+#nav-bar
+{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+}
+.navbar
+{
+  background-image: linear-gradient(to right,#1AA65C,#1AA695);
+  padding: 0 !important;
+}
+.navbar-brand img
+{
+  height: 40px;
+  padding-left: 20px;
+}
+.navbar-nav li
+{
+  padding: 0 10px;
+}
+.navbar-nav li a
+{
+  color: antiquewhite !important;
+  font-weight: 600;
+  float: right;
+  text-align: left;
+
+}
+.fa-bars
+{
+  color: antiquewhite;
+  font-size: 30px !important;
+}
+.navbar-toggler
+{
+  outline: none !important;
+}
+/*--------------------BANNER_SECTION--------------------*/
+#banner
+{
+  background-image: linear-gradient(to right,#1AA65C,#1AA695);
+  color: antiquewhite;
+  padding-top: 5%;
+}
+.promo-title
+{
+font-size: 40px;
+font-weight: 600;
+margin-top: 100px;
+}
+.img-fluid
+{
+  width: 50%;
+  height: 200px;
+
+}
+/*-----------------------services--------------------------*/
+#services
+{
+  padding: 100px 0;
+}
+.services
+{
+  padding: 20px;
+}
+.myimg
+{
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  display: block;
+  padding-bottom: 10px;
+}
+.title::before
+{
+  content: '';
+  background: #1AA65C;
+  height: 5px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  transform: translateY(63px);
+}
+.title::after
+{
+  content: '';
+  background: #1AA65C;
+  height: 10px;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:40px ;
+  display: block;
+  transform: translateY(8px);
+}
+/*---------------------ABOUT-US SECTION---------------------*/
+#about-us 
+{
+  background:url(/static/images/about_us.jpg);
+  padding-bottom:50px;
+  padding-top: 50px;
+
+
+}
+.about-title{
+  font-size: 30px;
+  font-weight: 180;
+  margin-top: 8%;
+
+}
+#about-us ul il 
+{
+  margin: 10px 0;
+
+}
+#about-us ul
+{
+  margin-left:10px ;
+
+}
+/*--------------------------------PATEINT OPENION SECTION------------------------------------*/
+
+#patient-opinion
+{
+  margin: 100px 0;
+
+}
+.patient-opinion
+{
+  border-left: 4px solid #1AA695;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.patient-opinion img
+{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 0 10px;
+
+}
+.user-details
+{
+  display: inline-block;
+  font-size: 12px;
+}
+/*------------------------SOCIAL-MEDIA SECTION---------------------------*/
+#social-media
+{
+  background-image: linear-gradient(to right,#1AA65C,#1AA695);
+  padding: 100px 0;
+}
+#social-media p
+{
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 30PX;
+}
+.social-icons img
+{
+  width: 60px;
+  transition: 0.5s;
+
+}
+.social-icons a:hover img
+{
+transform:translateY(-10px);
+}
+/*----------------------------------footer section---------------------------------*/
+#footer
+{
+  background-image: linear-gradient(to right,#1AA65C,#1AA695);
+  color: antiquewhite;
+
+}
+#footer img
+{
+  width: 50px;
+  height: 50px;
+}
+.footer-box
+{
+  padding: 20px;
+}
+.footer-box img
+{
+  width: 120px;
+  margin-bottom: 20px;
+}
+.footer-box .fa
+{
+margin-right: 8px;
+font-size: 25px;
+height: 40px;
+width: 40px;
+text-align: center;
+padding-top: 7px;
+border-radius: 2px;
+background-image: linear-gradient(to right,#1AA65C,#1AA695);
+}
+.footer-box .control-form
+{
+  box-shadow: none !important;
+  border: none;
+  border-radius: 0;
+  margin-top: 25px;
+  max-width: 250px;
+}
+.footer-box .btn-primary
+{
+  box-shadow: none !important;
+  border: none;
+  border-radius: 0;
+  margin-top: 30px;
+  background-image: linear-gradient(to right,#1AA65C,#1AA695);
+  
+}

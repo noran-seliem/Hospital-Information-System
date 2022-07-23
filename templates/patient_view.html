@@ -1,0 +1,43 @@
+{% extends "sidebar.html" %}
+
+{% block style_1%}
+<title>Medical Records</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block title %}
+Medical Records
+{% endblock %}
+
+{% block main_2 %}
+<!-- Page Content -->
+<div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+    <!-- We'll fill this with dummy content -->
+    <div class="container">
+        <div class="col-12">
+            <h4 class="text-center font-weight-bold"> {{T}}</h4>
+        </div>
+        {% for image in image_names %}
+        {% if u in image %}
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            {% if T =="Prescriptions"%}
+            <img class="img-responsive" src=" {{url_for('patient.display_p', image_name=image)}}">
+            {% endif %}
+            {% if T=="Scans" %}
+            <img class="img-responsive" src=" {{url_for('patient.display_s', image_name=image)}}">
+            {% endif %}
+            {% if T == "Reports" %}
+            <img class="img-responsive" src=" {{url_for('patient.display_r', image_name=image)}}">
+            {% endif %}
+        </div>
+        {% endif%}
+        {% endfor %}
+
+    </div>
+    <!-- End of dummy Content -->
+</div>
+{% endblock %}

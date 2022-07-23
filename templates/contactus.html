@@ -1,0 +1,23 @@
+{% extends "navbar.html" %}
+
+    {% block title %} 
+        Contact Us 
+    {% endblock %}
+
+    {% block style_1 %}
+        <link rel="stylesheet" href="../static/styles/contactus.css">
+    {% endblock %}
+
+    {% block main_1 %}
+    <div class="container">
+        <form id="contactus" action="{{ url_for('patient.contactus') }}" method="post">
+            <h3 class="text-center" >Contact Us </h3>
+            <p class="text-center" style="font-size: 14px;">Got a question or a complain?<br> We'd love to hear from you.<br>Send us a message and we'll respond as soon as possible</p>
+            <!-- <fieldset> <input placeholder="Email Address" type="email" tabindex="1" required> </fieldset> -->
+            <fieldset> <input placeholder="Subject" type="text" tabindex="2" name="subject" required> </fieldset>
+            <fieldset> <textarea placeholder="Type your message here..." tabindex="3" name="msg" required></textarea> </fieldset>
+            <fieldset> <button name="submit" type="submit" id="contactus-submit" data-submit="...Sending">Send </button> </fieldset>
+        </form>
+    </div>
+    {% endblock %}
+

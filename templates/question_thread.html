@@ -1,0 +1,65 @@
+{% extends "sidebar.html"%}
+
+{% block main_2%}
+<!-- Page Content -->
+<div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+
+  <h3 class="page-header text-center">Thread #{{msg['id']}}</h3>
+  <h5 class="text-center">Subject: {{msg['subject']}}</h5>
+
+  <!-- We'll fill this with dummy content -->
+  <div class="container bootdey flex-grow-1 container-p-y">
+    <hr class="border-light m-0">
+    <div class="card-body">
+
+
+
+{% for message in messages %}
+{% if (message.sender) != session.msg %}
+    <div class="" style="text-align:left; padding:2px 5px;">
+        <p>
+            <!-- <div> -->
+            <span class="" style="background-color: #28a7ab;color: #fff;margin: 1px 0;padding: 6px 12px; border-radius: 12px;"> {{message.msg}}</span>
+            <!-- </div> -->
+            <br>
+            <small class="text-muted">{{message.msgTime}}</small>
+        </p>
+    </div>
+{% else %}
+    <div class="" style="text-align:right; padding:2px 5px;">
+        <p>
+            <!-- <div> -->
+            <span class="" style="background-color: #dd92b2;color: #fff;margin: 1px 0;padding: 6px 12px; border-radius: 12px;"> {{message.msg}}</span>
+            <!-- </div> -->
+            <br>
+            <small class="text-muted">{{message.msgTime}}</small>
+        </p>
+    </div>
+{% endif %}
+{% endfor %}
+
+{% if unsolved %}
+    {% if session['msg']=='p' %}
+    <form action="{{ url_for('patient.unsolved', Qid = msg['id']) }}" method="post">
+    {% elif session['msg']=='A' %}
+    <form action="{{ url_for('admin.unsolved', Qid = msg['id']) }}" method="post">
+    {% endif %}
+        <div class="container-fluid">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Type your message here" name="msg">
+                <div class="text-center p-2"><button class="btn btn-outline-info px-2" type="submit" name="send">Send</button></div>
+            </div>
+            <div class=" p-3 mt-2" style="text-align:right;">
+                <button class="btn btn-outline-info p-2" type="submit" name="solved">Mark as solved</button>
+            </div>
+
+        </div>
+    </form>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</div>
+</div>
+</div>
+
+{% endblock %}

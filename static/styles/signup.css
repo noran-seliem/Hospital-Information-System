@@ -1,0 +1,34 @@
+body{
+   /* background-image: url("../images/doctors-patients-sit-talk-patient-about-medication_18497-166.jpg"); */
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /* set form background colour*/
+  form{
+    background: #fff;
+    
+    
+  }
+  /* set padding and size of th form */
+  .form-container{
+    padding-top: 25vh;
+    border-radius: 10px;
+    padding: 20px;
+    
+    
+  }
+
+  .main-section{
+    margin: 0 auto;
+    vertical-align: middle;
+    
+  }
+
+  .sbtn{
+    padding: 50px;
+    padding-left: 30%;
+    padding-right: 30%;
+  }

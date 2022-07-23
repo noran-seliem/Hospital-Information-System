@@ -1,0 +1,60 @@
+{% extends "sidebar.html"%}
+{% block main_2%}
+                     <!-- Page Content -->
+            <div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+                
+                <h3 class="page-header text-center">Patient's Profile</h3>
+
+                <!-- We'll fill this with dummy content -->
+                
+                <form action="{{url_for('admin.editpat')}}" method="post" class="">
+                    {% if succ %}
+                    <div class="alert alert-success" role="alert">
+                        {{ succ }}
+                    </div>
+                    {% endif %}
+            
+                    {% if err %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ err }}
+                    </div>
+                    {% endif %}
+
+                    <table class="table user-view-table m-0" style="text-align: left;">
+                      <tbody>
+                
+                        {% for header, data in Data %}
+                
+                        <tr>
+                            {% if (header == "ID" or header == "Join_date")%}
+                                <th scope="row"> {{header}}</th>
+                                <td><input type="text" name="{{header}}" class="form-control" value="{{data}}" readonly="readonly"></td>    
+                            {% else %}                        
+                                <th scope="row"> {{header}}</th>
+                                <td><input type="text" name="{{header}}" class="form-control" value="{{data}}"></td>
+                            {% endif %}
+
+                        </tr>
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                
+                      <div class="text-center d-flex justify-content-end py-4 mt-3">
+                        <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2"><a href="{{url_for('admin.view_patients')}}" style="color: inherit; text-decoration: inherit;"> Back </a> </button>
+                        <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2">Done</button>
+                      </div>
+                    </form>
+                                    
+                                   
+               
+
+
+               <!-- End of dummy Content -->
+            </div>
+                    
+                    
+                    
+        </div>
+                
+{% endblock %}

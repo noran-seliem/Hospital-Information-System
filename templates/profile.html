@@ -1,0 +1,340 @@
+{% extends "sidebar.html"%}
+
+{% block main_2%}
+<!-- Page Content -->
+<div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+
+  <h3 class="page-header text-center">Your Profile</h3>
+  <!-- We'll fill this with dummy content -->
+  <div class="container bootdey flex-grow-1 container-p-y">
+    <hr class="border-light m-0">
+    <div class="card-body">
+      {% if session['msg']=='p' %}
+
+
+      {% if view %}
+      <table class="table user-view-table m-0" style="text-align: left;">
+        <tbody>
+
+          {% for header, data in allData %}
+          <!-- we can skip password displaying or only hash it -->
+          {% if header == 'Password' %}
+          <tr>
+            <th scope="row"> {{header}}</th>
+            <td>
+              {% for letter in data %}*{% endfor %}
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <th scope="row"> {{header}}</th>
+            <td>{{data}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+      <form action="{{url_for('patient.display_profile')}}" method="post" class="d-flex justify-content-end py-4 mt-3">
+        <div class="text-center">
+
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="change">Change Password</button>
+
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="edit">Edit Profile</button>
+
+        </div>
+      </form>
+      {% endif %}
+
+
+      {% if edit %}
+      <form action="{{url_for('patient.edit_profile')}}" method="post" class="">
+        <table class="table user-view-table m-0" style="text-align: left;">
+          <tbody>
+
+            {% for header, data in allData if not ((header == 'Password') or (header == 'ID'))%}
+
+            <tr>
+              <th scope="row"> {{header}}</th>
+              <td><input type="text" name="{{header}}" class="form-control" value="{{data}}"></td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+        <div class="text-center d-flex justify-content-end py-4 mt-3">
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2"><a
+              href="{{url_for('patient.display_profile')}}" style="color: inherit; text-decoration: inherit;"> Back </a>
+          </button>
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="edit">Done</button>
+        </div>
+      </form>
+      {% endif %}
+
+
+      {% if change %}
+      <form action="{{url_for('patient.edit_profile')}}" method="post" class="">
+        <div class="form-group col-lg-12">
+          <label for="Password">Enter your current password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" name="password" class="form-control" id="Password" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-lg-12">
+          <label for="pw1">Enter a new password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" name="newpassword" class="form-control" id="pw1" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-lg-12">
+          <label for="pw2">Confirm new password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" class="form-control" id="pw2" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+          <small style="color:#d80808cb;" id="pwcheck"></small>
+        </div>
+
+        <div class="text-center d-flex justify-content-end py-4 mt-3">
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2"><a
+              href="{{url_for('patient.display_profile')}}" style="color: inherit; text-decoration: inherit;"> Back </a>
+          </button>
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2" id="btn2" name="change">Change
+            Password</button>
+        </div>
+      </form>
+      {% endif %}
+
+      {% elif session['msg']=='d' %}
+
+
+      {% if view %}
+      <table class="table user-view-table m-0" style="text-align: left;">
+        <tbody>
+
+          {% for header, data in allData %}
+          <!-- we can skip password displaying or only hash it -->
+          {% if header == 'Password' %}
+          <tr>
+            <th scope="row"> {{header}}</th>
+            <td>
+              {% for letter in data %}*{% endfor %}
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <th scope="row"> {{header}}</th>
+            <td>{{data}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+      <form action="{{url_for('doctor.display_profile')}}" method="post" class="d-flex justify-content-end py-4 mt-3">
+        <div class="text-center">
+
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="change">Change Password</button>
+
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="edit">Edit Profile</button>
+
+        </div>
+      </form>
+      {% endif %}
+
+
+      {% if edit %}
+      <form action="{{url_for('doctor.edit_profile')}}" method="post" class="">
+        <table class="table user-view-table m-0" style="text-align: left;">
+          <tbody>
+
+            {% for header, data in allData if not ((header == 'Password') or (header == 'ID'))%}
+
+            <tr>
+              <th scope="row"> {{header}}</th>
+              <td><input type="text" name="{{header}}" class="form-control" value="{{data}}"></td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+        <div class="text-center d-flex justify-content-end py-4 mt-3">
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2"><a
+              href="{{url_for('doctor.display_profile')}}" style="color: inherit; text-decoration: inherit;"> Back </a>
+          </button>
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="edit">Done</button>
+        </div>
+      </form>
+      {% endif %}
+
+
+      {% if change %}
+      <form action="{{url_for('doctor.edit_profile')}}" method="post" class="">
+        <div class="form-group col-lg-12">
+          <label for="Password">Enter your current password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" name="password" class="form-control" id="Password" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-lg-12">
+          <label for="pw1">Enter a new password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" name="newpassword" class="form-control" id="pw1" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-lg-12">
+          <label for="pw2">Confirm new password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" class="form-control" id="pw2" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+          <small style="color:#d80808cb;" id="pwcheck"></small>
+        </div>
+
+        <div class="text-center d-flex justify-content-end py-4 mt-3">
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2"><a
+              href="{{url_for('doctor.display_profile')}}" style="color: inherit; text-decoration: inherit;"> Back </a>
+          </button>
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2" id="btn2" name="change">Change
+            Password</button>
+        </div>
+      </form>
+      {% endif %}
+
+      {% elif session['msg']=='A' %}
+
+
+
+      {% if view %}
+      <table class="table user-view-table m-0" style="text-align: left;">
+        <tbody>
+
+          {% for header, data in adminData %}
+          <!-- we can skip password displaying or only hash it -->
+          {% if header == 'Password' %}
+          <tr>
+            <th scope="row"> {{header}}</th>
+            <td>
+              {% for letter in data %}*{% endfor %}
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <th scope="row"> {{header}}</th>
+            <td>{{data}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+      <form action="/A/profile" method="post" class="d-flex justify-content-end py-4 mt-3">
+        <div class="text-center">
+
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="change">Change Password</button>
+
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="edit">Edit Profile</button>
+
+        </div>
+      </form>
+      {% endif %}
+
+
+      {% if edit %}
+      <form action="/A/edit_profile" method="post" class="">
+        <table class="table user-view-table m-0" style="text-align: left;">
+          <tbody>
+
+            {% for header, data in adminData if not ((header == 'Password') or (header == 'ID'))%}
+
+            <tr>
+              <th scope="row"> {{header}}</th>
+              <td><input type="text" name="{{header}}" class="form-control" value="{{data}}"></td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+        <div class="text-center d-flex justify-content-end py-4 mt-3">
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2"><a href="/A/profile"
+              style="color: inherit; text-decoration: inherit;"> Back </a> </button>
+          <button type="submit" class="btn btn-outline-info btn-lg mr-2 p-2" name="edit">Done</button>
+        </div>
+      </form>
+      {% endif %}
+
+
+      {% if change %}
+      <form action="/A/edit_profile" method="post" class="">
+        <div class="form-group col-lg-12">
+          <label for="Password">Enter your current password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" name="password" class="form-control" id="Password" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-lg-12">
+          <label for="pw1">Enter a new password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" name="newpassword" class="form-control" id="pw1" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-lg-12">
+          <label for="pw2">Confirm new password</label>
+          <div class="input-group">
+            <input type="password" data-toggle="password" class="form-control" id="pw2" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-eye"></i></div>
+            </div>
+          </div>
+          <small style="color:#d80808cb;" id="pwcheck"></small>
+        </div>
+
+        <div class="text-center d-flex justify-content-end py-4 mt-3">
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2"><a href="/A/profile"
+              style="color: inherit; text-decoration: inherit;"> Back </a> </button>
+          <button type="button" class="btn btn-outline-info btn-lg mr-2 p-2" id="btn2" name="change">Change
+            Password</button>
+        </div>
+      </form>
+      {% endif %}
+
+      {% endif %}
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="../static/scripts/show-hide-password/bootstrap-show-password.js"></script>
+      <script src="../static/scripts/validations.js"></script>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

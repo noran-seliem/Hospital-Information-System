@@ -1,0 +1,102 @@
+{% extends "sidebar.html" %}
+
+{% block title%}
+Files
+{% endblock %}
+
+{% block style_1%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block main_2 %}
+<div id="content" class="col offset-0 h-100" style="margin-top: 1cm;">
+  <div class="container">
+    <div class="container">
+      <h2>Upload/View Files</h2><br>
+      <form method="POST" action="http://127.0.0.1:5000/upload" enctype="multipart/form-data">
+        <h4>Prescription:</h4>
+        <input type="text" name="p_id1" class="form" placeholder="Enter Patient ID">
+        <table>
+          <tr>
+            <td>
+              <br>
+              <input type="file" id="myFile" name="prescription" multiple><br>
+              <div class="mt-3">
+                <button type="submit" class="btn btn-outline-success btn-lg" style="background-color: #1AA65C; color: antiquewhite ;" >Upload Prescriptions</button>
+              
+            </td>
+            <td><br><br><br>
+              <input type="button"  class="btn btn-outline-success btn-lg"style="background-color: #1AA65C; color: antiquewhite ;" name="p"
+                onclick=" location.href ='http://127.0.0.1:5000/browse/prescriptions';" value="View " />
+
+            </td>
+          </div>
+          </tr>
+        </table>
+      </form>
+
+
+    </div>
+    <div class="container mt-3">
+      <form method="POST" action="http://127.0.0.1:5000/upload" enctype="multipart/form-data">
+        <br>
+        <h4>Scans:</h4>
+        <input type="text" name="p_id2" placeholder="Enter Patient ID">
+        <table>
+          <tr>
+            <td>
+              <br><br><br>
+              <input type="file" id="myFile" name="scan" multiple>
+              <div class="mt-3">
+                <button type="submit"  class="btn btn-outline-success btn-lg" style="background-color: #1AA65C; color: antiquewhite ;" >Upload Scans</button>
+              
+            </td>
+            <td><br><br><br><br><br>
+              <input type="button"  class="btn btn-outline-success btn-lg" style="background-color: #1AA65C; color: antiquewhite " name="s"
+                onclick=" location.href ='http://127.0.0.1:5000/browse/scans';" value="View"  />
+            </td>
+          </div>
+          </tr>
+        </table>
+      </form>
+
+
+    </div>
+    <div class="container mt-3">
+      <form method="POST" action="http://127.0.0.1:5000/upload" enctype="multipart/form-data">
+        <br><br>
+        <h4>Reports:</h4>
+        <input type="text" name="p_id3" class="form-control" placeholder="Enter Patient ID">
+        <table>
+          <tr>
+            <td>
+              <br>
+              <input type="file" id="myFile" name="report" multiple>
+              <div class="mt-3">
+                <button type="submit"  class="btn btn-outline-success btn-lg"style="background-color: #1AA65C; color: antiquewhite " >Upload Reports</button>
+              
+            </td>
+            <td><br><br><br>
+              <input type="button"  class="btn btn-outline-success btn-lg" style="background-color: #1AA65C; color: antiquewhite " name="r"
+                onclick=" location.href ='http://127.0.0.1:5000/browse/reports';" value="View" />
+            </td>
+          </div>
+          </tr>
+        </table>
+      </form>
+      <div class="mt-3">
+      </div>
+    </div>
+
+    <script>
+      //for file name
+      $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+      });
+    </script>
+  </div>
+  {% endblock %}

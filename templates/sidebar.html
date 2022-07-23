@@ -1,0 +1,80 @@
+{% extends "navbar.html"%}
+
+{% block style_1 %}
+    <link rel="stylesheet" href="../static/styles/sbar.css">
+{% endblock %}
+
+{% block main_1 %}
+
+<div class="wrapper">
+    <!-- Sidebar -->
+<div id="bar-fixed">
+    <nav id="sidebar">
+        <ul class="list-unstyled components">
+
+            {% if session['msg']=='d' %}
+            <a href="http://127.0.0.1:5000/d/dashboard" class="list-group-item active"  style="background-color: #1AA65C;" > Dashboard</a>
+            <a href="http://127.0.0.1:5000/d/profile" class="list-group-item" style="color: black;">Profile</a>
+            <a href="{{url_for('upcoming_app')}}" class="list-group-item"style="color: black;">View Your Appointments</a>
+            <a href="http://127.0.0.1:5000/upload" class="list-group-item"style="color: black;">Files</a>
+
+            {% elif session['msg']=='p' %}
+            <a href="http://127.0.0.1:5000/p/dashboard" class="list-group-item active" style="background-color: #1AA65C;"> Dashboard</a>
+            <a href="http://127.0.0.1:5000/p/profile" class="list-group-item"style="color: black;">Profile</a>
+            <a href="http://127.0.0.1:5000/p/bookAppointment" class="list-group-item"style="color: black;">Book Appointment</a>
+            <a href="{{url_for('upcoming_app')}}" class="list-group-item"style="color: black;">View Your Appointments</a>
+            <a href="http://127.0.0.1:5000/upload" class="list-group-item"style="color: black;">Upload File</a>
+            <a href="http://127.0.0.1:5000/p/contact_us" class="list-group-item"style="color: black;">Contact Us</a>
+            <a href="http://127.0.0.1:5000/p/messages" class="list-group-item"style="color: black;">My Messages</a>
+            <li class="nav-item dropdown">
+                <a class="list-group-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="color: black;">
+                    View Medical Reports
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="http://127.0.0.1:5000/p/view/Prescriptions"style="color: antiquewhite;background-color: #1AA65C;" >Prescriptions</a>
+                    <a class="dropdown-item" href="http://127.0.0.1:5000/p/view/Scans"style="color: antiquewhite;background-color: #1AA65C;">Scans</a>
+                    <a class="dropdown-item" href="http://127.0.0.1:5000/p/view/Reports"style="color: antiquewhite;background-color: #1AA65C;">Reports</a>
+                </div>
+            </li>
+
+
+            {% elif session['msg']=='A' %}
+            <a href="http://127.0.0.1:5000/A/dashboard" class="list-group-item active" style="background-color: #1AA65C;"> Dashboard</a>
+            <a href="http://127.0.0.1:5000/A/profile" class="list-group-item"style="color: black;">Profile</a>
+            <a href="{{url_for('upcoming_app')}}" class="list-group-item"style="color: black;"> View Upcoming Appointments </a>
+            <a href="http://127.0.0.1:5000/A/bookAppointment" class="list-group-item"style="color: black;"> Add Appointment </a>
+            <a href="http://127.0.0.1:5000/A/view_doctors" class="list-group-item"style="color: black;"> View Doctors</a>
+            <a href="http://127.0.0.1:5000/A/view_patients" class="list-group-item"style="color: black;"> View Patients</a>
+            <a href="http://127.0.0.1:5000/A/add_doctor" class="list-group-item"style="color: black;"> Add Doctor</a>
+            <a href="http://127.0.0.1:5000/A/add_patient" class="list-group-item"style="color: black;"> Add Patient</a>
+            <a href="http://127.0.0.1:5000/A/messages" class="list-group-item"style="color: black;"> View Messages</a>
+            <!-- <a href="http://127.0.0.1:5000/A/viewapp" class="list-group-item"style="color: black;"> ContactUs Forms</a> -->
+            <a href="http://127.0.0.1:5000/upload" class="list-group-item"style="color: black;">Files</a>
+            <a href="http://127.0.0.1:5000/A/manage_cal" class="list-group-item"style="color: black;">Manage Calendar </a>
+            <a href="http://127.0.0.1:5000/A/statistical" class="list-group-item"style="color: black;">Statistical Analysis </a>
+            {% endif %}
+        </ul>
+        
+    </nav>
+</div>
+
+    
+        {% block main_2 %}
+
+        {% endblock %}
+    
+</div>
+<script>
+    var topLimit = $('#bar-fixed').offset().top;
+$(window).scroll(function() {
+//console.log(topLimit <= $(window).scrollTop())
+if (topLimit <= $(window).scrollTop()) {
+    $('#bar-fixed').addClass('stickIt')
+} else {
+    $('#bar-fixed').removeClass('stickIt')
+}
+})
+</script>
+
+{% endblock %}
